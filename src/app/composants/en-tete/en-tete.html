@@ -1,0 +1,7 @@
+<header>
+    <img [src]="urlImage" alt="Logo Angular" width="50px" height="50px" />
+    <h1>{{titre}}</h1>
+    <button (click)="changeLogo()">Changer le titre</button><br/>
+    <input type="text" [(ngModel)]="titre" placeholder="Saisir le titre" size="100" />
+</header>
+

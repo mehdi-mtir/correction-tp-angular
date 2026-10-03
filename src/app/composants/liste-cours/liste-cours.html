@@ -1,0 +1,11 @@
+<section class="liste-cours">
+  @for (c of cours; track c.titre) {
+    <article class="carte-cours" [class.actif]="c === coursActif" (click)="selectionner(c)">
+      <h2>{{ c.titre }}</h2>
+      <p>Catégorie : {{ c.categorie }}</p>
+      <p>Durée : {{ c.duree }}</p>
+      <p>Places disponibles : {{ c.places }}</p>
+    </article>
+  }
+</section>
+
