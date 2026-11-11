@@ -28,3 +28,29 @@ footer {
     text-align: center;
     box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.1);
 }
+
+.menu { 
+    display: flex; 
+    gap: 8px; 
+    padding: 12px 24px; 
+    background: #1b1b2f; 
+} 
+
+.menu a { 
+    color: #fff; 
+    text-decoration: none; 
+    padding: 6px 14px; 
+    border-radius: 6px; 
+} 
+
+.menu a:hover { 
+    background: #262640;
+} 
+
+.menu a.actif { 
+    background: #dd0031; 
+} 
+
+main { 
+    padding: 24px; 
+}

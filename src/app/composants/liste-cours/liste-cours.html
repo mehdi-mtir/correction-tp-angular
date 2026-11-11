@@ -5,6 +5,7 @@
       <p>Catégorie : {{ c.categorie }}</p>
       <p>Durée : {{ c.duree }}</p>
       <p>Places disponibles : {{ c.places }}</p>
+      <a [routerLink]="['/cours', c.id]">Voir le détail</a>
     </article>
   }
 </section>
