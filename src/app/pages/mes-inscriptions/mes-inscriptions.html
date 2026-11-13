@@ -1,2 +1,12 @@
-<h1>Mes inscriptions</h1> 
-<p>Bonjour {{ session.nom() }}, vos inscriptions apparaîtront ici.</p>
+<h1>Mes inscriptions</h1>
+<p>Bonjour {{ session.nom() }}</p>
+@for (i of inscriptions.liste(); track i.coursId) {
+    <article class="carte-inscription">
+    <h2>{{ catalogue.trouver(i.coursId)?.titre }}</h2>
+    <p>Niveau : {{ i.niveau }} · Inscrit le {{ i.date | date:'dd/MM/yyyy' }}</p>
+    <button (click)="inscriptions.annuler(i.coursId)">Annuler l'inscription</button>
+    </article>
+} @empty {
+    <p>Aucune inscription pour le moment. <a routerLink="/cours">Parcourir le
+    catalogue</a></p>
+}

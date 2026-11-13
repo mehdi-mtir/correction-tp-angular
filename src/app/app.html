@@ -7,7 +7,9 @@
 <nav class="menu"> 
   <a routerLink="/" routerLinkActive="actif" [routerLinkActiveOptions]="{ exact: true }">Accueil</a> 
   <a routerLink="/cours" routerLinkActive="actif">Catalogue</a> 
-  <a routerLink="/mes-inscriptions" routerLinkActive="actif">Mes inscriptions</a> 
+  <a routerLink="/mes-inscriptions" routerLinkActive="actif">
+    Mes inscriptions ({{ inscriptions.liste().length }})
+  </a> 
   @if (session.connecte()) { 
     <button (click)="deconnecter()">Déconnexion ({{ session.nom() }})</button> 
   } @else { 

@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, inject, Input } from '@angular/core';
 import { Cours } from '../../models/cours';
 
 @Component({
@@ -8,5 +8,7 @@ import { Cours } from '../../models/cours';
   templateUrl: './detail-cours.html',
 })
 export class DetailCours {
+  
   @Input() cours: Cours | null = null;
+  
 }

@@ -1,19 +1,23 @@
 import { Component, Input, OnInit, inject } from '@angular/core'; 
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms'; 
 import { RouterLink } from '@angular/router'; 
-import { COURS, Cours } from '../../models/cours';
+import {Cours } from '../../models/cours';
+import {COURS} from '../../data/cours';
 import { Session } from '../../services/session'; 
 import { nomComplet } from '../../validators/nom-complet';
+import { Inscriptions } from '../../services/inscriptions';
 
 @Component({ 
   selector: 'app-inscription', 
   imports: [ReactiveFormsModule, RouterLink], 
+  //providers: [Inscriptions],
   templateUrl: './inscription.html', 
   styleUrl: './inscription.css', 
 })
 
 export class Inscription implements OnInit { 
   private session = inject(Session); 
+  private inscriptions = inject(Inscriptions);
   @Input() id = ''; // reçoit le :id de l'URL 
   confirmation = ''; 
   
@@ -34,7 +38,8 @@ export class Inscription implements OnInit {
     console.log(this.form);
   }*/
 
-  envoyer() { 
+  /*envoyer() { 
+    //console.log(this.form);
     if (this.form.invalid) { 
       this.form.markAllAsTouched(); // fait apparaître toutes les erreurs 
       return; 
@@ -46,6 +51,24 @@ export class Inscription implements OnInit {
       `Un message de confirmation sera envoyé à ${email}.`; 
     console.log('Inscription :', this.form.value); 
     this.form.reset(); 
+  }*/
+
+  envoyer() {
+    const cours = this.cours;
+    if (this.form.invalid || !cours) {
+      this.form.markAllAsTouched();
+      return;
+    }
+    const v = this.form.getRawValue();
+    this.inscriptions.ajouter({
+      coursId: cours.id,
+      nom: v.nom ?? '',
+      email: v.email ?? '',
+      niveau: v.niveau ?? '',
+      date: new Date(),
+    });
+    this.confirmation = `Merci ${v.nom} ! Votre inscription à « ${cours.titre} » est enregistrée.`;
+    this.form.reset();
   }
   
   ngOnInit() { 
